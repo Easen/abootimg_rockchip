@@ -661,11 +661,6 @@ void write_bootimg(t_abootimg* img)
   SHA1_Update(&ctx, &img->header.ramdisk_size, sizeof(img->header.ramdisk_size));
   SHA1_Update(&ctx, img->second, img->header.second_size);
   SHA1_Update(&ctx, &img->header.second_size, sizeof(img->header.second_size));
-  SHA1_Update(&ctx, &img->header.tags_addr, sizeof(img->header.tags_addr));
-  SHA1_Update(&ctx, &img->header.page_size, sizeof(img->header.page_size));
-  SHA1_Update(&ctx, &img->header.unused, sizeof(img->header.unused));
-  SHA1_Update(&ctx, &img->header.name, sizeof(img->header.name));
-  SHA1_Update(&ctx, &img->header.cmdline, sizeof(img->header.cmdline));
   SHA1_Final(sha, &ctx);
 
   memcpy(img->header.id, sha,
